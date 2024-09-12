@@ -1,3 +1,4 @@
+cd ..
 sudo yum install -y wget
 wget https://github.com/prometheus/cloudwatch_exporter/archive/refs/tags/v0.16.0.tar.gz
 tar -xzf v0.16.0.tar.gz
