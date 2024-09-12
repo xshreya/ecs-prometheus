@@ -1,0 +1,5 @@
+sudo yum install -y git
+git clone https://github.com/xshreya/ecs-prometheus.git
+cd ecs-prometheus
+chmod +x cmds.sh
+./cmds.sh
