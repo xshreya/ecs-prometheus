@@ -142,6 +142,7 @@ metrics:
     aws_metric_name: TaskCount
     aws_dimensions: [ClusterName, TaskDefinitionFamily]
     aws_statistics: [Sum]
+    
   # EC2 Instance Metrics
   - aws_namespace: AWS/EC2
     aws_metric_name: CPUUtilization
