@@ -12,138 +12,212 @@ metrics:
     aws_metric_name: CPUUtilization
     aws_dimensions: [ClusterName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: MemoryUtilization
     aws_dimensions: [ClusterName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: RunningTasksCount
     aws_dimensions: [ClusterName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: PendingTasksCount
     aws_dimensions: [ClusterName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ActiveServicesCount
     aws_dimensions: [ClusterName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: DesiredTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: RunningTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: PendingTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServiceCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServiceRunningTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServicePendingTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: CPUReservation
     aws_dimensions: [ClusterName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: MemoryReservation
     aws_dimensions: [ClusterName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ContainerInstanceCount
     aws_dimensions: [ClusterName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: TaskCount
     aws_dimensions: [ClusterName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServiceTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
-  # ECS Service Metrics
+  # ECS CPU and Memory Utilization per Service
   - aws_namespace: AWS/ECS
     aws_metric_name: CPUUtilization
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: MemoryUtilization
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
+  # ECS Service Count Metrics
   - aws_namespace: AWS/ECS
     aws_metric_name: ServiceCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServiceRunningTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: ServicePendingTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
+  # ECS Task Count Metrics
   - aws_namespace: AWS/ECS
     aws_metric_name: DesiredTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: RunningTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: PendingTaskCount
     aws_dimensions: [ClusterName, ServiceName]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      ServiceName: ['*']
 
-  # ECS Task Metrics
+  # ECS Task CPU and Memory Utilization
   - aws_namespace: AWS/ECS
     aws_metric_name: CPUUtilization
     aws_dimensions: [ClusterName, TaskDefinitionFamily]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      TaskDefinitionFamily: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: MemoryUtilization
     aws_dimensions: [ClusterName, TaskDefinitionFamily]
     aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      TaskDefinitionFamily: ['*']
 
   - aws_namespace: AWS/ECS
     aws_metric_name: TaskCount
     aws_dimensions: [ClusterName, TaskDefinitionFamily]
     aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+      TaskDefinitionFamily: ['*']
 
   # EC2 Instance Metrics
   - aws_namespace: AWS/EC2
@@ -270,7 +344,6 @@ metrics:
     aws_metric_name: NetworkPacketsOut
     aws_dimensions: [InstanceId]
     aws_statistics: [Sum]
-
 EOF
 wget https://github.com/prometheus/cloudwatch_exporter/releases/download/v0.16.0/cloudwatch_exporter-0.16.0-jar-with-dependencies.jar
 nohup java -jar cloudwatch_exporter-0.16.0-jar-with-dependencies.jar 9106 cloudwatch_exporter_config.yml &
