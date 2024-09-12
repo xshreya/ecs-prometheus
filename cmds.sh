@@ -344,6 +344,130 @@ metrics:
     aws_metric_name: NetworkPacketsOut
     aws_dimensions: [InstanceId]
     aws_statistics: [Sum]
+
+  # ECS Container Insights Metrics with TaskDefinition and ServiceName
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: CPUUtilization
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: MemoryUtilization
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: NetworkRxBytes
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Sum, Average]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: NetworkTxBytes
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Sum, Average]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: EphemeralStorageUtilization
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Average, Maximum, Minimum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: ContainerInstanceCount
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: TaskCount
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  - aws_namespace: ECS/ContainerInsights
+    aws_metric_name: ServiceCount
+    aws_dimensions: [ClusterName, TaskDefinitionFamily, ServiceName]
+    aws_statistics: [Sum]
+    aws_dimension_select:
+      ClusterName: ['ecs-cluster-prometheus']
+
+  # EC2 Metrics
+  - aws_namespace: AWS/EC2
+    aws_metric_name: CPUUtilization
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Average, Maximum, Minimum]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: NetworkIn
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: NetworkOut
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: DiskReadBytes
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: DiskWriteBytes
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: StatusCheckFailed
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: StatusCheckFailed_System
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+
+  - aws_namespace: AWS/EC2
+    aws_metric_name: StatusCheckFailed_Instance
+    aws_dimensions: [InstanceId]
+    aws_statistics: [Sum]
+
+  # EFS Metrics
+  - aws_namespace: AWS/EFS
+    aws_metric_name: BurstCreditBalance
+    aws_dimensions: [FileSystemId]
+    aws_statistics: [Sum, Average, Minimum]
+
+  - aws_namespace: AWS/EFS
+    aws_metric_name: ClientConnections
+    aws_dimensions: [FileSystemId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EFS
+    aws_metric_name: DataReadIOBytes
+    aws_dimensions: [FileSystemId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EFS
+    aws_metric_name: DataWriteIOBytes
+    aws_dimensions: [FileSystemId]
+    aws_statistics: [Sum, Average]
+
+  - aws_namespace: AWS/EFS
+    aws_metric_name: MetadataIOBytes
+    aws_dimensions: [FileSystemId]
+    aws_statistics: [Sum, Average]
 EOF
 wget https://github.com/prometheus/cloudwatch_exporter/releases/download/v0.16.0/cloudwatch_exporter-0.16.0-jar-with-dependencies.jar
 nohup java -jar cloudwatch_exporter-0.16.0-jar-with-dependencies.jar 9106 cloudwatch_exporter_config.yml &
