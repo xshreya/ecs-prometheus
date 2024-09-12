@@ -1,6 +1,9 @@
 sudo yum install -y wget
 wget https://github.com/prometheus/cloudwatch_exporter/archive/refs/tags/v0.16.0.tar.gz
 tar -xzf v0.16.0.tar.gz
+sudo amazon-linux-extras install java-openjdk11
+java -version
+cd cloudwatch_exporter-0.16.0/
 cat << EOF > cloudwatch_exporter_config.yml
 region: eu-west-1
 metrics:
@@ -267,9 +270,8 @@ metrics:
     aws_metric_name: NetworkPacketsOut
     aws_dimensions: [InstanceId]
     aws_statistics: [Sum]
+
 EOF
-sudo amazon-linux-extras install java-openjdk11
-java -version
 wget https://github.com/prometheus/cloudwatch_exporter/releases/download/v0.16.0/cloudwatch_exporter-0.16.0-jar-with-dependencies.jar
 nohup java -jar cloudwatch_exporter-0.16.0-jar-with-dependencies.jar 9106 cloudwatch_exporter_config.yml &
 sudo netstat -tuln | grep 9106

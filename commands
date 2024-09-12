@@ -2,5 +2,5 @@ cd desktop
 ssh -i path/to/ssh-keypair.pem ec2-user@<instance-id>
 sudo yum install -y git
 git clone https://github.com/xshreya/ecs-prometheus.git
-chmod +x /ecs-prometheus/cmds.sh
-/ecs-prometheus/cmds.sh
+chmod +x /home/ec2-user/ecs-prometheus/cmds.sh
+./ecs-prometheus/cmds.sh
