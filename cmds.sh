@@ -1,4 +1,3 @@
-cd ..
 sudo yum install -y wget
 wget https://github.com/prometheus/cloudwatch_exporter/archive/refs/tags/v0.16.0.tar.gz
 tar -xzf v0.16.0.tar.gz
@@ -142,7 +141,7 @@ metrics:
     aws_metric_name: TaskCount
     aws_dimensions: [ClusterName, TaskDefinitionFamily]
     aws_statistics: [Sum]
-    
+
   # EC2 Instance Metrics
   - aws_namespace: AWS/EC2
     aws_metric_name: CPUUtilization
@@ -298,19 +297,19 @@ global:
 scrape_configs:
   - job_name: "prometheus"
     static_configs:
-      - targets: ["44.192.5.4:9091"]
+      - targets: ["100.25.246.73:9091"]
 
   - job_name: "cloudwatch_exporter"
     static_configs:
-      - targets: ["44.192.5.4:9106"]
+      - targets: ["100.25.246.73:9106"]
 
   - job_name: 'cadvisor'
     static_configs:
-      - targets: ['44.192.5.4:8080']
+      - targets: ['100.25.246.73:8080']
 
   - job_name: 'node_exporter'
     static_configs:
-      - targets: ['44.192.5.4:9100']
+      - targets: ['100.25.246.73:9100']
 EOL
 nohup ./prometheus --config.file=prometheus.yml --web.listen-address=:9091 > prometheus.log 2>&1 &
 netstat -tuln | grep 9091
